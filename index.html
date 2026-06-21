@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2W INTERPLUS | ที่ปรึกษาธุรกิจครบวงจร — การตลาด กลยุทธ์ เว็บไซต์ ระบบ วิเคราะห์</title>
+  <meta name="description" content="ที่ปรึกษาธุรกิจมืออาชีพครบวงจร การตลาดออนไลน์ วางกลยุทธ์ รับทำเว็บไซต์ Custom System และวิเคราะห์ธุรกิจ ทุกประเภท ทุกขนาด">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark:        '#0D0D0C',
+              charcoal:    '#1B1B19',
+              bronze:      '#C5A880',
+              bronzedark:  '#A3845B',
+              bronzelight: '#E2CDA9',
+              border:      '#2A2A28',
+              stone:       '#F5F2EB',
+              lightBg:     '#F9F8F6',
+              lightCard:   '#F5F2EB',
+              lightBorder: '#E2DFD8',
+            }
+          },
+          fontFamily: {
+            sans:  ['Prompt', 'Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Prompt:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Prompt', sans-serif; scroll-behavior: smooth; }
+    .serif { font-family: 'Playfair Display', serif; }
+
+    .theme-t {
+      transition: background-color .5s cubic-bezier(.4,0,.2,1),
+                  border-color .5s cubic-bezier(.4,0,.2,1),
+                  color .5s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0D0D0C; }
+    ::-webkit-scrollbar-thumb { background: #C5A880; border-radius: 3px; }
+
+    /* ── Hexagon clip ── */
+    .hex { clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); }
+
+    /* ── Logo glow (dark only) ── */
+    @keyframes logo-glow {
+      0%,100% { filter: drop-shadow(0 0 4px rgba(197,168,128,.5)); }
+      50%      { filter: drop-shadow(0 0 14px rgba(197,168,128,.9)) drop-shadow(0 0 30px rgba(197,168,128,.3)); }
+    }
+    .dark .logo-glow { animation: logo-glow 4s ease-in-out infinite; }
+
+    /* ── Hero decorative hex SVG ── */
+    .hero-hex-deco { position: absolute; right: 14%; top: 50%; transform: translateY(-50%); opacity: .045; pointer-events: none; }
+
+    /* ── Fine-line border overlay ── */
+    .fine-border { position: fixed; inset: 0; border: 1px solid rgba(226,223,216,.25); pointer-events: none; z-index: 50; }
+    .dark .fine-border { border-color: rgba(42,42,40,.6); }
+
+    /* ── Fade-in ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── Service cards ── */
+    .svc-card { transition: border-color .25s, background .25s; }
+    .svc-card:hover { border-color: rgba(197,168,128,.4); }
+    .svc-card.active { border-color: #C5A880; }
+
+    /* ── Expand panel top accent ── */
+    .expand-accent::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, #C5A880 25%, #C5A880 75%, transparent);
+    }
+
+    /* ── Process connector ── */
+    .proc-line {
+      position: absolute; top: 18px; left: calc(10% + 18px); right: calc(10% + 18px); height: 1px;
+      background: repeating-linear-gradient(to right, #2A2A28 0, #2A2A28 5px, transparent 5px, transparent 11px);
+    }
+    .dark .proc-line { background: repeating-linear-gradient(to right,#2A2A28 0,#2A2A28 5px,transparent 5px,transparent 11px); }
+    .light .proc-line { background: repeating-linear-gradient(to right,#E2DFD8 0,#E2DFD8 5px,transparent 5px,transparent 11px); }
+
+    /* ── Form status ── */
+    #form-status { display: none; }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    /* ── Notification toast ── */
+    #toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      background: #1B1B19; border: 1px solid #C5A880; border-radius: 10px;
+      padding: .75rem 1.25rem; font-size: .75rem; color: #C5A880;
+      transform: translateY(120%); transition: transform .35s ease;
+    }
+    #toast.show { transform: translateY(0); }
+  </style>
+
+  <script>
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-dark text-gray-800 dark:text-gray-300 antialiased theme-t">
+
+<!-- Fine-line overlay -->
+<div class="fine-border"></div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════ -->
+<header id="navbar" class="sticky top-0 z-40 bg-brand-lightBg/95 dark:bg-brand-dark/95 backdrop-blur-md border-b border-brand-lightBorder dark:border-brand-border/60 theme-t transition-shadow duration-300">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-3 group">
+      <img src="logo.png" alt="P2W INTERPLUS" class="h-14 w-auto object-contain logo-glow">
+      <div>
+        <span class="block text-xs font-semibold tracking-[.15em] text-brand-dark dark:text-white uppercase theme-t">P2W INTERPLUS</span>
+        <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Consulting</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-7 text-[11px] font-light tracking-[.1em]">
+      <a href="#services"  class="text-gray-500 dark:text-gray-400 hover:text-brand-bronze dark:hover:text-brand-bronze theme-t transition-colors">บริการ</a>
+      <a href="#process"   class="text-gray-500 dark:text-gray-400 hover:text-brand-bronze dark:hover:text-brand-bronze theme-t transition-colors">ขั้นตอน</a>
+      <a href="#why"       class="text-gray-500 dark:text-gray-400 hover:text-brand-bronze dark:hover:text-brand-bronze theme-t transition-colors">เกี่ยวกับเรา</a>
+      <a href="#contact"   class="text-gray-500 dark:text-gray-400 hover:text-brand-bronze dark:hover:text-brand-bronze theme-t transition-colors">ติดต่อ</a>
+      <a href="https://p2winterplus-oss.github.io/P2W-Main/" class="text-gray-500 dark:text-gray-400 hover:text-brand-bronze dark:hover:text-brand-bronze theme-t transition-colors">← หน้าหลัก</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Theme toggle -->
+      <button onclick="toggleTheme()" class="p-2 text-gray-400 hover:text-brand-bronze transition-colors focus:outline-none" aria-label="สลับโหมด">
+        <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+        </svg>
+        <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+      <!-- CTA -->
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-brand-bronze hover:bg-brand-bronzedark text-brand-dark text-[10px] font-semibold tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300">
+        ขอคำปรึกษา
+      </a>
+      <!-- Hamburger -->
+      <button id="hamburger" onclick="toggleMenu()" class="md:hidden text-gray-500 dark:text-gray-400 hover:text-brand-dark dark:hover:text-white focus:outline-none theme-t">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-16 6h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden bg-brand-lightBg/95 dark:bg-brand-dark/95 border-b border-brand-lightBorder dark:border-brand-border/60 px-6 py-5 space-y-4 theme-t">
+    <a href="#services"  onclick="toggleMenu()" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-brand-bronze">บริการ</a>
+    <a href="#process"   onclick="toggleMenu()" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-brand-bronze">ขั้นตอน</a>
+    <a href="#why"       onclick="toggleMenu()" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-brand-bronze">เกี่ยวกับเรา</a>
+    <a href="#contact"   onclick="toggleMenu()" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-brand-bronze">ติดต่อ</a>
+    <a href="https://p2winterplus-oss.github.io/P2W-Main/" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-brand-bronze">← หน้าหลัก P2W</a>
+    <div class="pt-3 border-t border-brand-lightBorder dark:border-brand-border/60">
+      <a href="#contact" onclick="toggleMenu()" class="block w-full text-center bg-brand-bronze hover:bg-brand-bronzedark text-brand-dark text-[10px] font-semibold tracking-wider uppercase px-5 py-3 rounded-full transition-all">ขอคำปรึกษา</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section id="home" class="relative min-h-[88vh] flex items-center py-20 overflow-hidden border-b border-brand-lightBorder dark:border-brand-border/45 theme-t">
+
+  <!-- Background -->
+  <div class="absolute inset-0 bg-brand-lightBg dark:bg-brand-dark theme-t">
+    <!-- Radial glow -->
+    <div class="absolute right-0 top-0 w-[55%] h-full opacity-[.035] dark:opacity-[.06]"
+         style="background: radial-gradient(ellipse at 80% 40%, #C5A880 0%, transparent 65%)"></div>
+  </div>
+
+  <!-- Decorative hex SVG -->
+  <svg class="hero-hex-deco w-[340px] h-[340px] hidden lg:block" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="170,8 322,90 322,250 170,332 18,250 18,90" stroke="#C5A880" stroke-width="1.2"/>
+    <polygon points="170,40 290,108 290,232 170,300 50,232 50,108" stroke="#C5A880" stroke-width=".6"/>
+    <polygon points="170,80 258,130 258,214 170,264 82,214 82,130" stroke="#C5A880" stroke-width=".3"/>
+  </svg>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
+
+    <!-- Left -->
+    <div class="lg:col-span-7 space-y-7 fade-up">
+      <div class="inline-flex items-center gap-2 border border-brand-bronze/35 bg-brand-bronze/5 rounded-full px-4 py-1.5">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-bronze opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-bronze"></span>
+        </span>
+        <span class="text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Professional Business Consultants</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-light text-brand-dark dark:text-white tracking-tight leading-[1.15] serif theme-t">
+        ที่ปรึกษาธุรกิจ<br>
+        <span class="italic font-normal text-brand-bronze">ที่ผลักดันให้คุณ</span><br>
+        เติบโตอย่างมั่นคง
+      </h1>
+
+      <p class="text-sm text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed font-light theme-t">
+        บริการที่ปรึกษาครบวงจร ตั้งแต่การตลาดออนไลน์ วางกลยุทธ์ธุรกิจ รับทำเว็บไซต์ ออกแบบระบบเก็บข้อมูล ไปจนถึงวิเคราะห์ประเมินธุรกิจ — ทุกประเภท ทุกขนาด
+      </p>
+
+      <div class="grid grid-cols-3 gap-6 py-6 border-t border-b border-brand-lightBorder dark:border-brand-border/50 theme-t">
+        <div>
+          <span class="block text-3xl font-light text-brand-bronze serif">200+</span>
+          <span class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1 block theme-t">ธุรกิจที่ดูแล</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-light text-brand-bronze serif">15+</span>
+          <span class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1 block theme-t">ปีประสบการณ์</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-light text-brand-bronze serif">5</span>
+          <span class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-1 block theme-t">ด้านบริการ</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#services" class="bg-brand-bronze hover:bg-brand-bronzedark text-brand-dark text-[10px] tracking-[.18em] font-semibold uppercase px-8 py-4 rounded-full transition-all duration-300 text-center">
+          สำรวจบริการทั้งหมด
+        </a>
+        <a href="#contact" class="border border-brand-lightBorder dark:border-brand-border text-brand-dark dark:text-white hover:border-brand-bronze hover:text-brand-bronze dark:hover:text-brand-bronze text-[10px] tracking-[.16em] font-semibold uppercase px-8 py-4 rounded-full transition-all duration-300 text-center theme-t">
+          ขอคำปรึกษาฟรี &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Right card -->
+    <div class="lg:col-span-5 fade-up" style="transition-delay:.15s">
+      <div class="border border-brand-lightBorder dark:border-brand-border rounded-2xl p-7 bg-brand-lightCard/80 dark:bg-brand-charcoal/40 relative shadow-xl overflow-hidden theme-t">
+        <!-- corner accents -->
+        <div class="absolute top-0 left-0 w-4 h-[1px] bg-brand-bronze"></div>
+        <div class="absolute top-0 left-0 h-4 w-[1px] bg-brand-bronze"></div>
+        <div class="absolute bottom-0 right-0 w-4 h-[1px] bg-brand-bronze"></div>
+        <div class="absolute bottom-0 right-0 h-4 w-[1px] bg-brand-bronze"></div>
+
+        <div class="mb-5 pb-4 border-b border-brand-lightBorder dark:border-brand-border theme-t">
+          <span class="text-[9px] text-brand-bronze tracking-[.28em] font-semibold uppercase">เราดูแลธุรกิจทุกประเภท</span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <div class="hex w-9 h-9 bg-brand-bronze/10 dark:bg-brand-bronze/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-store text-brand-bronze text-xs"></i>
+            </div>
+            <div>
+              <p class="text-xs font-medium text-brand-dark dark:text-white theme-t">ร้านค้าออนไลน์ / ออฟไลน์</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-500">Shopee, Lazada, TikTok Shop, หน้าร้าน</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="hex w-9 h-9 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-building text-brand-bronze text-xs"></i>
+            </div>
+            <div>
+              <p class="text-xs font-medium text-brand-dark dark:text-white theme-t">SME ขนาดกลาง–ใหญ่</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-500">บริษัท ห้างหุ้นส่วน นิติบุคคล</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="hex w-9 h-9 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-tent-arrow-down-to-line text-brand-bronze text-xs"></i>
+            </div>
+            <div>
+              <p class="text-xs font-medium text-brand-dark dark:text-white theme-t">ร้านตลาดนัด / ห้องแถว</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-500">ธุรกิจเล็กอยากโตต้องการที่ปรึกษา</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="hex w-9 h-9 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-laptop text-brand-bronze text-xs"></i>
+            </div>
+            <div>
+              <p class="text-xs font-medium text-brand-dark dark:text-white theme-t">ธุรกิจออนไลน์ทุกประเภท</p>
+              <p class="text-[10px] text-gray-500 dark:text-gray-500">Startup, Agency, Freelancer, Creator</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-brand-lightBorder dark:border-brand-border theme-t flex items-center justify-between">
+          <span class="text-[9px] text-gray-400 font-light">บริการทั้ง Inhouse & Online</span>
+          <a href="#contact" class="text-[9px] text-brand-bronze tracking-wider uppercase hover:underline">นัดปรึกษา &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SERVICES (Option C — Grid + Expand)
+════════════════════════════════════════════════════════ -->
+<section id="services" class="py-24 bg-brand-stone dark:bg-brand-charcoal theme-t">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <span class="text-[10px] tracking-[.3em] text-brand-bronze uppercase block font-light mb-2">Our Expertise</span>
+      <h2 class="text-3xl md:text-4xl font-light text-brand-dark dark:text-white serif theme-t">บริการที่ปรึกษาครบวงจร</h2>
+      <div class="w-10 h-[1px] bg-brand-bronze mx-auto mt-4"></div>
+    </div>
+
+    <!-- 5 service cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6 fade-up" style="transition-delay:.1s">
+
+      <button onclick="switchService('marketing')" id="btn-marketing"
+        class="svc-card active group border border-brand-bronze bg-brand-lightCard dark:bg-brand-dark/60 rounded-xl p-5 text-left transition-all duration-300 focus:outline-none theme-t">
+        <div class="hex w-10 h-10 bg-brand-bronze/10 dark:bg-brand-bronze/15 flex items-center justify-center mb-4 group-hover:bg-brand-bronze/20 transition-colors">
+          <i class="fas fa-bullhorn text-brand-bronze"></i>
+        </div>
+        <h3 class="font-semibold text-brand-dark dark:text-white text-[11px] uppercase tracking-wide mb-1 theme-t">การตลาด<br>ออนไลน์</h3>
+        <span class="text-[9px] text-brand-bronze block mt-2 font-medium" id="lbl-marketing">แสดงอยู่ ↓</span>
+      </button>
+
+      <button onclick="switchService('strategy')" id="btn-strategy"
+        class="svc-card group border border-brand-lightBorder dark:border-brand-border bg-brand-lightCard/70 dark:bg-brand-dark/35 rounded-xl p-5 text-left transition-all duration-300 focus:outline-none theme-t">
+        <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center mb-4 group-hover:bg-brand-bronze/20 transition-colors">
+          <i class="fas fa-chess text-brand-bronze"></i>
+        </div>
+        <h3 class="font-semibold text-brand-dark dark:text-white text-[11px] uppercase tracking-wide mb-1 theme-t">วางกลยุทธ์<br>ธุรกิจ</h3>
+        <span class="text-[9px] text-gray-400 block mt-2" id="lbl-strategy">ดูเพิ่มเติม →</span>
+      </button>
+
+      <button onclick="switchService('website')" id="btn-website"
+        class="svc-card group border border-brand-lightBorder dark:border-brand-border bg-brand-lightCard/70 dark:bg-brand-dark/35 rounded-xl p-5 text-left transition-all duration-300 focus:outline-none theme-t">
+        <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center mb-4 group-hover:bg-brand-bronze/20 transition-colors">
+          <i class="fas fa-globe text-brand-bronze"></i>
+        </div>
+        <h3 class="font-semibold text-brand-dark dark:text-white text-[11px] uppercase tracking-wide mb-1 theme-t">รับทำ<br>เว็บไซต์</h3>
+        <span class="text-[9px] text-gray-400 block mt-2" id="lbl-website">ดูเพิ่มเติม →</span>
+      </button>
+
+      <button onclick="switchService('system')" id="btn-system"
+        class="svc-card group border border-brand-lightBorder dark:border-brand-border bg-brand-lightCard/70 dark:bg-brand-dark/35 rounded-xl p-5 text-left transition-all duration-300 focus:outline-none theme-t">
+        <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center mb-4 group-hover:bg-brand-bronze/20 transition-colors">
+          <i class="fas fa-database text-brand-bronze"></i>
+        </div>
+        <h3 class="font-semibold text-brand-dark dark:text-white text-[11px] uppercase tracking-wide mb-1 theme-t">Custom<br>System</h3>
+        <span class="text-[9px] text-gray-400 block mt-2" id="lbl-system">ดูเพิ่มเติม →</span>
+      </button>
+
+      <button onclick="switchService('analysis')" id="btn-analysis"
+        class="svc-card group border border-brand-lightBorder dark:border-brand-border bg-brand-lightCard/70 dark:bg-brand-dark/35 rounded-xl p-5 text-left transition-all duration-300 focus:outline-none theme-t">
+        <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center mb-4 group-hover:bg-brand-bronze/20 transition-colors">
+          <i class="fas fa-chart-pie text-brand-bronze"></i>
+        </div>
+        <h3 class="font-semibold text-brand-dark dark:text-white text-[11px] uppercase tracking-wide mb-1 theme-t">วิเคราะห์<br>ธุรกิจ</h3>
+        <span class="text-[9px] text-gray-400 block mt-2" id="lbl-analysis">ดูเพิ่มเติม →</span>
+      </button>
+    </div>
+
+    <!-- Expand panel -->
+    <div class="border border-brand-lightBorder dark:border-brand-border rounded-xl bg-brand-lightCard dark:bg-brand-dark relative overflow-hidden expand-accent shadow-xl theme-t fade-up" style="transition-delay:.2s">
+
+      <!-- hex bg deco -->
+      <svg class="absolute right-0 bottom-0 opacity-[.025] pointer-events-none" width="180" height="180" viewBox="0 0 180 180">
+        <polygon points="90,4 170,48 170,132 90,176 10,132 10,48" fill="#C5A880"/>
+      </svg>
+
+      <!-- MARKETING -->
+      <div id="detail-marketing" class="svc-detail grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-start">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-[10px] text-brand-bronze tracking-[.28em] uppercase font-light">Digital Marketing & Social Media</span>
+          <h3 class="text-2xl md:text-3xl font-light text-brand-dark dark:text-white serif leading-snug theme-t">ที่ปรึกษาการตลาดออนไลน์<br>ครบทุกแพลตฟอร์ม</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">วางแผนและดำเนินการด้านการตลาดดิจิทัลแบบครบวงจร ตั้งแต่การสร้างแบรนด์ออนไลน์ Content Strategy SEO ไปจนถึง Paid Ads ทุกแพลตฟอร์ม เพิ่มยอดขายและฐานลูกค้าได้จริง วัดผลได้ทุกเดือน</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-300 font-light theme-t">
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Facebook / Instagram / TikTok / LINE OA</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Google Ads / Meta Ads / วางแผนงบโฆษณา</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Content Strategy + ผลิต Content รายเดือน</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>SEO / SEM และการปรับ Landing Page</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วิเคราะห์คู่แข่งและตลาดเชิงลึก</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>รายงานผลทุกสิ้นเดือน พร้อมแนะนำปรับแผน</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-brand-stone/60 dark:bg-brand-charcoal/50 border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-4 font-semibold flex items-center gap-2">
+            <span class="hex w-3 h-3 bg-brand-bronze inline-block"></span> แพ็คเกจรายเดือน
+          </h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-gray-300 border-b border-brand-lightBorder dark:border-brand-border pb-4 font-light theme-t">
+            <li class="flex justify-between items-center"><span>Starter — Social + Content</span><span class="font-semibold text-brand-dark dark:text-white font-mono">5,000/ด.</span></li>
+            <li class="flex justify-between items-center"><span>Pro — + Ads Management</span><span class="font-semibold text-brand-dark dark:text-white font-mono">12,000/ด.</span></li>
+            <li class="flex justify-between items-center"><span>Full Service — ครบทุกด้าน</span><span class="font-semibold text-brand-dark dark:text-white font-mono">25,000/ด.</span></li>
+          </ul>
+          <p class="text-[9px] text-gray-400 mt-3 font-light leading-relaxed">*ราคาเริ่มต้น ปรับได้ตามขนาดและประเภทธุรกิจ</p>
+          <a href="#contact" class="mt-4 block text-center text-[10px] tracking-widest uppercase text-brand-bronze border border-brand-bronze/40 rounded-full py-2 hover:bg-brand-bronze/10 transition-colors">นัดปรึกษาฟรี &rarr;</a>
+        </div>
+      </div>
+
+      <!-- STRATEGY -->
+      <div id="detail-strategy" class="svc-detail hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-start">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-[10px] text-brand-bronze tracking-[.28em] uppercase font-light">Business Strategy & Planning</span>
+          <h3 class="text-2xl md:text-3xl font-light text-brand-dark dark:text-white serif leading-snug theme-t">วางกลยุทธ์ธุรกิจและ<br>แผนการเติบโตระยะยาว</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ที่ปรึกษาธุรกิจมืออาชีพช่วยวิเคราะห์สถานการณ์ปัจจุบัน กำหนดทิศทาง และวางแผนกลยุทธ์ที่ชัดเจน เหมาะสมกับทรัพยากรและเป้าหมายของธุรกิจคุณ ทั้งแบบรายครั้งและรายเดือน</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-300 font-light theme-t">
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วิเคราะห์ตลาด คู่แข่ง และ Customer Insight</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>SWOT Analysis และ Business Model Canvas</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>จัดทำ Business Plan สำหรับขอสินเชื่อ/ลงทุน</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วางแผนการขยายสาขา / ช่องทางจำหน่ายใหม่</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Pricing Strategy และ Revenue Model</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ติดตามผลและปรับกลยุทธ์รายไตรมาส</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-brand-stone/60 dark:bg-brand-charcoal/50 border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-4 font-semibold flex items-center gap-2">
+            <span class="hex w-3 h-3 bg-brand-bronze inline-block"></span> ค่าบริการที่ปรึกษา
+          </h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-gray-300 border-b border-brand-lightBorder dark:border-brand-border pb-4 font-light theme-t">
+            <li class="flex justify-between items-center"><span>ปรึกษาเบื้องต้น (Workshop 1 วัน)</span><span class="font-semibold text-brand-dark dark:text-white font-mono">15,000.-</span></li>
+            <li class="flex justify-between items-center"><span>จัดทำ Business Plan ครบถ้วน</span><span class="font-semibold text-brand-dark dark:text-white font-mono">35,000.-</span></li>
+            <li class="flex justify-between items-center"><span>ที่ปรึกษารายเดือน (Retainer)</span><span class="font-semibold text-brand-dark dark:text-white font-mono">20,000/ด.</span></li>
+          </ul>
+          <p class="text-[9px] text-gray-400 mt-3 font-light leading-relaxed">*ราคาเริ่มต้น ขึ้นอยู่กับขอบเขตและความซับซ้อนของงาน</p>
+          <a href="#contact" class="mt-4 block text-center text-[10px] tracking-widest uppercase text-brand-bronze border border-brand-bronze/40 rounded-full py-2 hover:bg-brand-bronze/10 transition-colors">นัดปรึกษาฟรี &rarr;</a>
+        </div>
+      </div>
+
+      <!-- WEBSITE -->
+      <div id="detail-website" class="svc-detail hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-start">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-[10px] text-brand-bronze tracking-[.28em] uppercase font-light">Website Design & Development</span>
+          <h3 class="text-2xl md:text-3xl font-light text-brand-dark dark:text-white serif leading-snug theme-t">รับทำเว็บไซต์ออกแบบ<br>ดูแลระบบครบจบ</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ออกแบบและพัฒนาเว็บไซต์ที่สะท้อนแบรนด์ของคุณ Responsive ทุกอุปกรณ์ โหลดเร็ว SEO พร้อม และดูแลหลังส่งมอบ ตั้งแต่ Landing Page ง่ายๆ ถึง E-commerce เต็มรูปแบบ</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-300 font-light theme-t">
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>UI/UX Design ตามแบรนด์และเป้าหมาย</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Responsive ทุกหน้าจอ — Mobile, Tablet, Desktop</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>SEO On-page พื้นฐานพร้อมส่งมอบ</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ระบบ CMS แก้ไขได้ง่ายโดยไม่ต้องเขียนโค้ด</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ระบบ E-commerce ตะกร้าสินค้า ชำระเงินออนไลน์</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ดูแลระบบ Hosting + Domain หลังส่งมอบ</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-brand-stone/60 dark:bg-brand-charcoal/50 border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-4 font-semibold flex items-center gap-2">
+            <span class="hex w-3 h-3 bg-brand-bronze inline-block"></span> ราคาเริ่มต้น
+          </h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-gray-300 border-b border-brand-lightBorder dark:border-brand-border pb-4 font-light theme-t">
+            <li class="flex justify-between items-center"><span>Landing Page (1–5 หน้า)</span><span class="font-semibold text-brand-dark dark:text-white font-mono">15,000.-</span></li>
+            <li class="flex justify-between items-center"><span>Corporate Website (5–15 หน้า)</span><span class="font-semibold text-brand-dark dark:text-white font-mono">35,000.-</span></li>
+            <li class="flex justify-between items-center"><span>E-commerce เต็มรูปแบบ</span><span class="font-semibold text-brand-dark dark:text-white font-mono">65,000.-</span></li>
+          </ul>
+          <p class="text-[9px] text-gray-400 mt-3 font-light leading-relaxed">*ราคาเริ่มต้น ไม่รวมค่า Hosting/Domain รายปี</p>
+          <a href="#contact" class="mt-4 block text-center text-[10px] tracking-widest uppercase text-brand-bronze border border-brand-bronze/40 rounded-full py-2 hover:bg-brand-bronze/10 transition-colors">ขอใบเสนอราคา &rarr;</a>
+        </div>
+      </div>
+
+      <!-- SYSTEM -->
+      <div id="detail-system" class="svc-detail hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-start">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-[10px] text-brand-bronze tracking-[.28em] uppercase font-light">Custom Data System Design</span>
+          <h3 class="text-2xl md:text-3xl font-light text-brand-dark dark:text-white serif leading-snug theme-t">ออกแบบระบบเก็บข้อมูล<br>Custom เฉพาะธุรกิจคุณ</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ออกแบบและพัฒนาระบบเก็บข้อมูลเฉพาะทาง ช่วยให้การบันทึก ค้นหา และอ่านผลข้อมูลทำได้เร็วขึ้น ง่ายขึ้น และแม่นยำขึ้น พร้อม Dashboard แสดงผลแบบ Real-time ที่ทีมงานทุกคนใช้ได้ทันที</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-300 font-light theme-t">
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วิเคราะห์ความต้องการและออกแบบ Data Flow</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ระบบฟอร์มรับข้อมูล — เว็บ / มือถือ / QR Code</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>Dashboard แสดงผลแบบ Real-time ตามต้องการ</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ระบบ Report อัตโนมัติ ส่ง Email / Line รายงาน</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>เชื่อมต่อ API กับระบบที่มีอยู่เดิม</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>สอนทีมงานใช้งาน + ดูแลระบบหลังส่งมอบ</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-brand-stone/60 dark:bg-brand-charcoal/50 border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-4 font-semibold flex items-center gap-2">
+            <span class="hex w-3 h-3 bg-brand-bronze inline-block"></span> ราคาตามขอบเขตงาน
+          </h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-gray-300 border-b border-brand-lightBorder dark:border-brand-border pb-4 font-light theme-t">
+            <li class="flex justify-between items-center"><span>ระบบเก็บข้อมูลพื้นฐาน + Dashboard</span><span class="font-semibold text-brand-dark dark:text-white font-mono">เริ่มต้น 25,000.-</span></li>
+            <li class="flex justify-between items-center"><span>ระบบ Multi-user + Auto Report</span><span class="font-semibold text-brand-dark dark:text-white font-mono">เริ่มต้น 55,000.-</span></li>
+            <li class="flex justify-between items-center"><span>Enterprise / API Integration</span><span class="font-semibold text-brand-dark dark:text-white font-mono">ตามขอบเขตงาน</span></li>
+          </ul>
+          <p class="text-[9px] text-gray-400 mt-3 font-light leading-relaxed">*ประเมินราคาหลังวิเคราะห์ความต้องการจริง ไม่มีค่าใช้จ่ายในการปรึกษาเบื้องต้น</p>
+          <a href="#contact" class="mt-4 block text-center text-[10px] tracking-widest uppercase text-brand-bronze border border-brand-bronze/40 rounded-full py-2 hover:bg-brand-bronze/10 transition-colors">ปรึกษาเบื้องต้นฟรี &rarr;</a>
+        </div>
+      </div>
+
+      <!-- ANALYSIS -->
+      <div id="detail-analysis" class="svc-detail hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 items-start">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-[10px] text-brand-bronze tracking-[.28em] uppercase font-light">Business Analysis & Assessment</span>
+          <h3 class="text-2xl md:text-3xl font-light text-brand-dark dark:text-white serif leading-snug theme-t">วิเคราะห์และประเมินธุรกิจ<br>ทุกประเภท ทุกขนาด</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ทีมผู้เชี่ยวชาญลงพื้นที่ (Inhouse) หรือดำเนินการออนไลน์ เพื่อวิเคราะห์สถานภาพธุรกิจปัจจุบัน หาจุดแข็ง จุดอ่อน โอกาส และอุปสรรค พร้อมข้อเสนอแนะที่ปฏิบัติได้จริง</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-300 font-light theme-t">
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ประเมินสถานภาพธุรกิจ 360° (Inhouse + Online)</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วิเคราะห์ยอดขาย ต้นทุน กำไร และ Cash Flow</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>ตรวจสอบ Operations และ Workflow ภายใน</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>วิเคราะห์การตลาดและช่องทางขายที่มีอยู่</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>เหมาะกับธุรกิจทุกขนาด ตั้งแต่ตลาดนัดถึงองค์กร</span></div>
+            <div class="flex items-start gap-2"><span class="text-brand-bronze mt-0.5">✔</span><span>รายงานเชิงลึกพร้อม Roadmap ที่ปฏิบัติได้จริง</span></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-brand-stone/60 dark:bg-brand-charcoal/50 border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-4 font-semibold flex items-center gap-2">
+            <span class="hex w-3 h-3 bg-brand-bronze inline-block"></span> แพ็คเกจประเมินธุรกิจ
+          </h4>
+          <ul class="space-y-3 text-xs text-gray-600 dark:text-gray-300 border-b border-brand-lightBorder dark:border-brand-border pb-4 font-light theme-t">
+            <li class="flex justify-between items-center"><span>Basic — Online Assessment</span><span class="font-semibold text-brand-dark dark:text-white font-mono">8,000.-</span></li>
+            <li class="flex justify-between items-center"><span>Standard — Inhouse + Report</span><span class="font-semibold text-brand-dark dark:text-white font-mono">20,000.-</span></li>
+            <li class="flex justify-between items-center"><span>Premium — ครบวงจร + Roadmap</span><span class="font-semibold text-brand-dark dark:text-white font-mono">45,000.-</span></li>
+          </ul>
+          <p class="text-[9px] text-gray-400 mt-3 font-light leading-relaxed">*บริการทั้ง Inhouse (ลงพื้นที่) และ Online สะดวกทั้งสองรูปแบบ</p>
+          <a href="#contact" class="mt-4 block text-center text-[10px] tracking-widest uppercase text-brand-bronze border border-brand-bronze/40 rounded-full py-2 hover:bg-brand-bronze/10 transition-colors">นัดประเมินธุรกิจ &rarr;</a>
+        </div>
+      </div>
+
+    </div><!-- /expand panel -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PROCESS
+════════════════════════════════════════════════════════ -->
+<section id="process" class="py-24 bg-brand-lightBg dark:bg-brand-dark border-t border-brand-lightBorder dark:border-brand-border/45 theme-t">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+      <span class="text-[10px] tracking-[.35em] text-brand-bronze uppercase block font-medium mb-2">How We Work</span>
+      <h2 class="text-3xl md:text-4xl font-light text-brand-dark dark:text-white serif theme-t">ขั้นตอนการทำงาน</h2>
+      <div class="w-10 h-[1px] bg-brand-bronze mx-auto mt-4"></div>
+    </div>
+
+    <div class="relative fade-up" style="transition-delay:.1s">
+      <!-- connector line -->
+      <div class="proc-line hidden md:block absolute"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-5">
+            <div class="hex w-[72px] h-[72px] bg-brand-lightCard dark:bg-brand-charcoal/60 border border-brand-lightBorder dark:border-brand-border/60 flex items-center justify-center transition-all duration-300 group-hover:border-brand-bronze theme-t">
+              <i class="fas fa-comments text-gray-400 dark:text-gray-500 group-hover:text-brand-bronze transition-colors text-xl"></i>
+            </div>
+            <div class="hex w-5 h-5 bg-brand-bronze absolute -top-1 -right-1 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-brand-dark">1</span>
+            </div>
+          </div>
+          <h4 class="text-[10px] font-semibold text-brand-dark dark:text-white uppercase tracking-wider mb-1 theme-t">รับข้อมูลโครงการ</h4>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">คุยความต้องการและเป้าหมายเบื้องต้น</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-5">
+            <div class="hex w-[72px] h-[72px] bg-brand-lightCard dark:bg-brand-charcoal/60 border border-brand-lightBorder dark:border-brand-border/60 flex items-center justify-center transition-all duration-300 group-hover:border-brand-bronze theme-t">
+              <i class="fas fa-magnifying-glass-chart text-gray-400 dark:text-gray-500 group-hover:text-brand-bronze transition-colors text-xl"></i>
+            </div>
+            <div class="hex w-5 h-5 bg-brand-bronze absolute -top-1 -right-1 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-brand-dark">2</span>
+            </div>
+          </div>
+          <h4 class="text-[10px] font-semibold text-brand-dark dark:text-white uppercase tracking-wider mb-1 theme-t">วิเคราะห์เชิงลึก</h4>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ศึกษาธุรกิจ ตลาด และคู่แข่งอย่างละเอียด</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-5">
+            <div class="hex w-[72px] h-[72px] bg-brand-lightCard dark:bg-brand-charcoal/60 border border-brand-lightBorder dark:border-brand-border/60 flex items-center justify-center transition-all duration-300 group-hover:border-brand-bronze theme-t">
+              <i class="fas fa-file-contract text-gray-400 dark:text-gray-500 group-hover:text-brand-bronze transition-colors text-xl"></i>
+            </div>
+            <div class="hex w-5 h-5 bg-brand-bronze absolute -top-1 -right-1 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-brand-dark">3</span>
+            </div>
+          </div>
+          <h4 class="text-[10px] font-semibold text-brand-dark dark:text-white uppercase tracking-wider mb-1 theme-t">เสนอแผนงาน</h4>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">นำเสนอกลยุทธ์ แผนปฏิบัติ และใบเสนอราคา</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-5">
+            <div class="hex w-[72px] h-[72px] bg-brand-lightCard dark:bg-brand-charcoal/60 border border-brand-lightBorder dark:border-brand-border/60 flex items-center justify-center transition-all duration-300 group-hover:border-brand-bronze theme-t">
+              <i class="fas fa-rocket text-gray-400 dark:text-gray-500 group-hover:text-brand-bronze transition-colors text-xl"></i>
+            </div>
+            <div class="hex w-5 h-5 bg-brand-bronze absolute -top-1 -right-1 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-brand-dark">4</span>
+            </div>
+          </div>
+          <h4 class="text-[10px] font-semibold text-brand-dark dark:text-white uppercase tracking-wider mb-1 theme-t">ดำเนินงาน</h4>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">ลงมือทำตามแผน ทีมงานมืออาชีพดูแลทุกขั้นตอน</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center group">
+          <div class="relative mb-5">
+            <div class="hex w-[72px] h-[72px] bg-brand-lightCard dark:bg-brand-charcoal/60 border border-brand-lightBorder dark:border-brand-border/60 flex items-center justify-center transition-all duration-300 group-hover:border-brand-bronze theme-t">
+              <i class="fas fa-chart-line text-gray-400 dark:text-gray-500 group-hover:text-brand-bronze transition-colors text-xl"></i>
+            </div>
+            <div class="hex w-5 h-5 bg-brand-bronze absolute -top-1 -right-1 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-brand-dark">5</span>
+            </div>
+          </div>
+          <h4 class="text-[10px] font-semibold text-brand-dark dark:text-white uppercase tracking-wider mb-1 theme-t">ติดตามผล</h4>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">รายงานผล วัดตัวชี้วัด และปรับแผนให้เหมาะสม</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════════════════════ -->
+<section id="why" class="relative overflow-hidden min-h-[560px] flex items-center theme-t">
+  <div class="absolute inset-0 bg-brand-dark">
+    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
+         alt="" class="w-full h-full object-cover object-center opacity-20">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/60 via-brand-dark/80 to-brand-dark/95"></div>
+  </div>
+
+  <!-- Decorative hex -->
+  <svg class="absolute right-12 top-12 opacity-[.05] pointer-events-none" width="160" height="160" viewBox="0 0 160 160">
+    <polygon points="80,4 152,44 152,116 80,156 8,116 8,44" fill="#C5A880"/>
+  </svg>
+  <svg class="absolute right-32 bottom-8 opacity-[.03] pointer-events-none" width="100" height="100" viewBox="0 0 100 100">
+    <polygon points="50,3 95,28 95,72 50,97 5,72 5,28" fill="#C5A880"/>
+  </svg>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-24 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+      <div class="lg:col-span-4 fade-up">
+        <span class="text-[10px] tracking-[.35em] text-brand-bronze uppercase font-medium block mb-3">Why Choose P2W Consult</span>
+        <h2 class="text-3xl md:text-4xl font-light text-white serif leading-tight mb-5">
+          ทำไมต้องเลือก<br><span class="italic text-brand-bronze">P2W Consult</span>
+        </h2>
+        <div class="w-10 h-[1px] bg-brand-bronze mb-6"></div>
+        <p class="text-sm text-gray-400 leading-relaxed font-light">
+          เราไม่ใช่แค่ที่ปรึกษาที่พูดแต่ทฤษฎี แต่คือทีมงานที่ลงมือทำพร้อมคุณทุกขั้นตอน และวัดผลได้จริงทุกเดือน
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 fade-up" style="transition-delay:.15s">
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-users text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">ทีมงานมืออาชีพหลายสาขา</p>
+              <p class="text-gray-400 text-xs leading-relaxed">ผู้เชี่ยวชาญด้านการตลาด กลยุทธ์ เทคโนโลยี และการเงิน ดูแลครบทุกมิติ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-store text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">ดูแลธุรกิจทุกขนาด</p>
+              <p class="text-gray-400 text-xs leading-relaxed">ตั้งแต่ร้านตลาดนัด ห้องแถว ไปจนถึงบริษัทขนาดกลาง-ใหญ่ ไม่มีงานเล็กหรือใหญ่เกินไป</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-location-dot text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">Inhouse & Online</p>
+              <p class="text-gray-400 text-xs leading-relaxed">ลงพื้นที่จริง หรือดำเนินการออนไลน์ ยืดหยุ่นตามความสะดวกของลูกค้า</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-chart-bar text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">วัดผลได้จริงทุกเดือน</p>
+              <p class="text-gray-400 text-xs leading-relaxed">รายงานผลชัดเจน ตัวชี้วัดโปร่งใส และปรับกลยุทธ์ตามข้อมูลจริงเสมอ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-handshake text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">ทำงานเป็นทีมเดียวกัน</p>
+              <p class="text-gray-400 text-xs leading-relaxed">ไม่ใช่แค่ที่ปรึกษา แต่เราเป็นพาร์ทเนอร์ที่ร่วมทุกข์ร่วมสุขกับธุรกิจของคุณ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl p-5 hover:border-brand-bronze/40 transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="hex w-10 h-10 bg-brand-bronze/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-shield-halved text-brand-bronze text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm mb-1">ปรึกษาครั้งแรกฟรี</p>
+              <p class="text-gray-400 text-xs leading-relaxed">ไม่มีค่าใช้จ่ายในการปรึกษาเบื้องต้น ไม่มีข้อผูกมัด ตัดสินใจได้หลังรับฟัง</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTACT / FORM
+════════════════════════════════════════════════════════ -->
+<section id="contact" class="py-24 bg-brand-lightBg dark:bg-brand-dark border-t border-brand-lightBorder dark:border-brand-border/45 theme-t">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <span class="text-[10px] tracking-[.3em] text-brand-bronze uppercase block font-light mb-2">Free Consultation</span>
+      <h2 class="text-3xl md:text-4xl font-light text-brand-dark dark:text-white serif theme-t">ขอคำปรึกษาฟรี<br>ไม่มีข้อผูกมัด</h2>
+      <div class="w-10 h-[1px] bg-brand-bronze mx-auto mt-4 mb-6"></div>
+      <p class="text-sm text-gray-500 dark:text-gray-400 font-light theme-t">กรอกข้อมูลด้านล่างและทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง หรือติดต่อได้โดยตรงผ่านช่องทางด้านล่าง</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+      <!-- Form -->
+      <div class="lg:col-span-7 fade-up">
+        <div class="border border-brand-lightBorder dark:border-brand-border rounded-2xl p-8 bg-brand-lightCard dark:bg-brand-charcoal/30 relative overflow-hidden shadow-xl theme-t">
+          <!-- top accent -->
+          <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-bronze to-transparent"></div>
+
+          <form id="consult-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="c5363896-f578-4dd8-ad46-f481f5514982">
+            <input type="hidden" name="subject" value="[P2W Consult] ขอคำปรึกษาใหม่">
+            <input type="hidden" name="from_name" value="P2W Consult Website">
+            <input type="hidden" name="redirect" value="false">
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">ชื่อ–นามสกุล *</label>
+                <input type="text" name="name" required placeholder="กรอกชื่อ-นามสกุล"
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand-bronze transition-colors theme-t">
+              </div>
+              <div>
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">เบอร์โทรศัพท์ *</label>
+                <input type="tel" name="phone" required placeholder="08x-xxx-xxxx"
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand-bronze transition-colors theme-t">
+              </div>
+              <div>
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">อีเมล</label>
+                <input type="email" name="email" placeholder="email@example.com"
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand-bronze transition-colors theme-t">
+              </div>
+              <div>
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">ประเภทธุรกิจ</label>
+                <select name="business_type"
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-bronze transition-colors theme-t">
+                  <option value="">เลือกประเภทธุรกิจ</option>
+                  <option>ร้านค้าออนไลน์</option>
+                  <option>ร้านค้าหน้าร้าน / ตลาดนัด</option>
+                  <option>ห้องแถว / ร้านค้าทั่วไป</option>
+                  <option>SME / บริษัทขนาดกลาง</option>
+                  <option>องค์กรขนาดใหญ่</option>
+                  <option>Startup / ธุรกิจออนไลน์</option>
+                  <option>อื่นๆ</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">บริการที่สนใจ *</label>
+                <select name="service" required
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-bronze transition-colors theme-t">
+                  <option value="">เลือกบริการที่สนใจ</option>
+                  <option>ที่ปรึกษาการตลาดออนไลน์</option>
+                  <option>วางกลยุทธ์ธุรกิจ</option>
+                  <option>รับทำเว็บไซต์</option>
+                  <option>Custom System (ระบบเก็บข้อมูล)</option>
+                  <option>วิเคราะห์และประเมินธุรกิจ</option>
+                  <option>หลายบริการ / ยังไม่แน่ใจ</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-[.15em] mb-1.5 theme-t">รายละเอียดเพิ่มเติม</label>
+                <textarea name="message" rows="4" placeholder="เล่าให้ฟังเกี่ยวกับธุรกิจและสิ่งที่ต้องการ..."
+                  class="w-full bg-brand-lightBg dark:bg-brand-dark/60 border border-brand-lightBorder dark:border-brand-border rounded-lg px-4 py-3 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand-bronze transition-colors theme-t resize-none"></textarea>
+              </div>
+            </div>
+
+            <button type="submit"
+              class="mt-6 w-full bg-brand-bronze hover:bg-brand-bronzedark text-brand-dark font-semibold text-[11px] tracking-[.18em] uppercase px-8 py-4 rounded-full transition-all duration-300">
+              ส่งข้อมูลขอคำปรึกษา
+            </button>
+
+            <div id="form-status" class="mt-4 text-center text-sm rounded-lg py-3 px-4"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="lg:col-span-5 space-y-6 fade-up" style="transition-delay:.15s">
+
+        <div class="border border-brand-lightBorder dark:border-brand-border rounded-xl p-6 bg-brand-lightCard dark:bg-brand-charcoal/30 theme-t">
+          <h4 class="text-[10px] uppercase tracking-widest text-brand-bronze mb-5 font-semibold">ติดต่อโดยตรง</h4>
+          <div class="space-y-4">
+            <a href="tel:0887888364" class="flex items-center gap-4 group">
+              <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-bronze/20 transition-colors">
+                <i class="fas fa-phone text-brand-bronze text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-0.5">โทรศัพท์</p>
+                <p class="text-sm text-brand-dark dark:text-white font-medium group-hover:text-brand-bronze theme-t transition-colors">088-788-8364</p>
+              </div>
+            </a>
+            <a href="mailto:p2w.interplus@gmail.com" class="flex items-center gap-4 group">
+              <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-bronze/20 transition-colors">
+                <i class="fas fa-envelope text-brand-bronze text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-0.5">อีเมล</p>
+                <p class="text-sm text-brand-dark dark:text-white font-medium group-hover:text-brand-bronze theme-t transition-colors">p2w.interplus@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener" class="flex items-center gap-4 group">
+              <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-bronze/20 transition-colors">
+                <i class="fab fa-line text-brand-bronze text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-0.5">LINE OA</p>
+                <p class="text-sm text-brand-dark dark:text-white font-medium group-hover:text-brand-bronze theme-t transition-colors">@p2winterplus</p>
+              </div>
+            </a>
+            <div class="flex items-start gap-4">
+              <div class="hex w-10 h-10 bg-brand-bronze/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-location-dot text-brand-bronze text-sm"></i>
+              </div>
+              <div>
+                <p class="text-[9px] text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-0.5">ที่อยู่</p>
+                <p class="text-sm text-brand-dark dark:text-white font-light leading-relaxed theme-t">49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่<br>แขวงสามวาตะวันออก เขตคลองสามวา<br>กรุงเทพฯ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-brand-lightBorder dark:border-brand-border rounded-xl p-5 bg-brand-bronze/5 border-brand-bronze/20 theme-t">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="hex w-8 h-8 bg-brand-bronze/20 flex items-center justify-center">
+              <i class="fas fa-clock text-brand-bronze text-xs"></i>
+            </div>
+            <p class="text-xs font-medium text-brand-dark dark:text-white theme-t">เวลาทำการ</p>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-light theme-t">
+            จันทร์–ศุกร์: 9:00 – 18:00 น.<br>
+            เสาร์: 10:00 – 16:00 น.<br>
+            ปรึกษาออนไลน์ได้ตลอด 24 ชม. ทาง LINE
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="bg-gray-100 dark:bg-[#060609] pt-16 pb-8 border-t border-brand-lightBorder dark:border-brand-border/60 theme-t">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="logo.png" alt="P2W INTERPLUS" class="h-14 w-auto object-contain logo-glow">
+          <div>
+            <span class="block text-xs font-semibold tracking-[.15em] text-brand-dark dark:text-white uppercase theme-t">P2W INTERPLUS</span>
+            <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Consulting</span>
+          </div>
+        </div>
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-sm font-light theme-t">
+          ที่ปรึกษาธุรกิจครบวงจร ช่วยผลักดันธุรกิจทุกประเภทและทุกขนาดให้เติบโต เพิ่มฐานลูกค้า และเพิ่มยอดขายได้จริง
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="hex w-9 h-9 bg-white dark:bg-brand-charcoal border border-brand-lightBorder dark:border-brand-border flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-brand-bronze hover:text-brand-dark hover:border-brand-bronze transition-all duration-300 theme-t">
+            <i class="fab fa-facebook-f text-xs"></i>
+          </a>
+          <a href="https://lin.ee/QJax26d" target="_blank" rel="noopener" class="hex w-9 h-9 bg-white dark:bg-brand-charcoal border border-brand-lightBorder dark:border-brand-border flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-brand-bronze hover:text-brand-dark hover:border-brand-bronze transition-all duration-300 theme-t">
+            <i class="fab fa-line text-xs"></i>
+          </a>
+          <a href="#" class="hex w-9 h-9 bg-white dark:bg-brand-charcoal border border-brand-lightBorder dark:border-brand-border flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-brand-bronze hover:text-brand-dark hover:border-brand-bronze transition-all duration-300 theme-t">
+            <i class="fab fa-instagram text-xs"></i>
+          </a>
+          <a href="#" class="hex w-9 h-9 bg-white dark:bg-brand-charcoal border border-brand-lightBorder dark:border-brand-border flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-brand-bronze hover:text-brand-dark hover:border-brand-bronze transition-all duration-300 theme-t">
+            <i class="fab fa-tiktok text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-gray-900 dark:text-white font-semibold mb-5 uppercase tracking-wider text-[10px] theme-t">บริการของเรา</h4>
+        <ul class="space-y-2.5 text-sm text-gray-500 dark:text-gray-400 font-light theme-t">
+          <li><a href="#services" onclick="switchService('marketing')" class="hover:text-brand-bronze transition-colors">การตลาดออนไลน์</a></li>
+          <li><a href="#services" onclick="switchService('strategy')" class="hover:text-brand-bronze transition-colors">วางกลยุทธ์ธุรกิจ</a></li>
+          <li><a href="#services" onclick="switchService('website')" class="hover:text-brand-bronze transition-colors">รับทำเว็บไซต์</a></li>
+          <li><a href="#services" onclick="switchService('system')" class="hover:text-brand-bronze transition-colors">Custom System</a></li>
+          <li><a href="#services" onclick="switchService('analysis')" class="hover:text-brand-bronze transition-colors">วิเคราะห์ธุรกิจ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-gray-900 dark:text-white font-semibold mb-5 uppercase tracking-wider text-[10px] theme-t">ติดต่อสำนักงาน</h4>
+        <ul class="space-y-3 text-sm text-gray-500 dark:text-gray-400 font-light theme-t">
+          <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-brand-bronze mt-1 text-xs"></i><span>49/306 ซ.นิมิตใหม่40 ถ.นิมิตใหม่<br>เขตคลองสามวา กรุงเทพฯ</span></li>
+          <li class="flex items-center gap-2"><i class="fas fa-phone text-brand-bronze text-xs"></i><a href="tel:0887888364" class="hover:text-brand-bronze transition-colors">088-788-8364</a></li>
+          <li class="flex items-center gap-2"><i class="fas fa-envelope text-brand-bronze text-xs"></i><a href="mailto:p2w.interplus@gmail.com" class="hover:text-brand-bronze transition-colors break-all">p2w.interplus@gmail.com</a></li>
+        </ul>
+        <div class="mt-5">
+          <a href="https://p2winterplus-oss.github.io/P2W-Main/" class="inline-flex items-center gap-2 text-[10px] text-brand-bronze hover:text-brand-bronzelight transition-colors uppercase tracking-wider">
+            <i class="fas fa-arrow-left text-xs"></i> กลับหน้าหลัก P2W
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-brand-lightBorder dark:border-brand-border/60 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 theme-t">
+      <p class="text-gray-400 text-xs">&copy; 2026 P2W INTERPLUS GROUP. All rights reserved.</p>
+      <div class="flex gap-5 text-xs text-gray-400">
+        <a href="#" class="hover:text-brand-bronze transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-brand-bronze transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════════ -->
+<script>
+  /* Theme toggle */
+  function toggleTheme() {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  /* Mobile menu */
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  /* Service card switching */
+  const SERVICES = ['marketing', 'strategy', 'website', 'system', 'analysis'];
+
+  function switchService(id) {
+    SERVICES.forEach(s => {
+      const btn = document.getElementById('btn-' + s);
+      const det = document.getElementById('detail-' + s);
+      const lbl = document.getElementById('lbl-' + s);
+      if (s === id) {
+        btn.classList.add('active');
+        btn.classList.remove('border-brand-lightBorder', 'dark:border-brand-border', 'bg-brand-lightCard/70', 'dark:bg-brand-dark/35');
+        btn.classList.add('border-brand-bronze', 'bg-brand-lightCard', 'dark:bg-brand-dark/60');
+        det.classList.remove('hidden');
+        if (lbl) { lbl.textContent = 'แสดงอยู่ ↓'; lbl.classList.remove('text-gray-400'); lbl.classList.add('text-brand-bronze', 'font-medium'); }
+      } else {
+        btn.classList.remove('active');
+        btn.classList.add('border-brand-lightBorder', 'dark:border-brand-border', 'bg-brand-lightCard/70', 'dark:bg-brand-dark/35');
+        btn.classList.remove('border-brand-bronze', 'bg-brand-lightCard', 'dark:bg-brand-dark/60');
+        det.classList.add('hidden');
+        if (lbl) { lbl.textContent = 'ดูเพิ่มเติม →'; lbl.classList.add('text-gray-400'); lbl.classList.remove('text-brand-bronze', 'font-medium'); }
+      }
+    });
+  }
+
+  /* Navbar scroll shadow */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('shadow-lg', window.scrollY > 50);
+  });
+
+  /* Fade-in observer */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  /* Toast helper */
+  function showToast(msg, duration = 4000) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+  }
+
+  /* Form submit */
+  document.getElementById('consult-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type=submit]');
+    const status = document.getElementById('form-status');
+    btn.disabled = true;
+    btn.textContent = 'กำลังส่ง...';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(this)
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.style.display = 'block';
+        status.className = 'mt-4 text-center text-sm rounded-lg py-3 px-4 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800';
+        status.textContent = '✓ ส่งข้อมูลเรียบร้อยแล้ว ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง';
+        this.reset();
+        showToast('✓ ได้รับข้อมูลแล้ว — ทีมงานจะติดต่อกลับเร็วๆ นี้');
+      } else {
+        throw new Error('failed');
+      }
+    } catch {
+      status.style.display = 'block';
+      status.className = 'mt-4 text-center text-sm rounded-lg py-3 px-4 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800';
+      status.textContent = '✕ เกิดข้อผิดพลาด กรุณาลองอีกครั้ง หรือติดต่อผ่าน LINE โดยตรง';
+    }
+    btn.disabled = false;
+    btn.textContent = 'ส่งข้อมูลขอคำปรึกษา';
+  });
+</script>
+
+<!-- Visitor Tracker -->
+<script>
+(async function trackVisit() {
+  const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbz6ya72gdmELmCECrO28zACTdoVLcchVJXOoluHpjPTKsZnCRmYkRk5B74vvD57jHLB/exec';
+  const UA = navigator.userAgent;
+  const BOT = /bot|crawl|spider|GPTBot|ChatGPT|Claude|PerplexityBot|Amazonbot|CCBot/i.test(UA);
+  const botMatch = UA.match(/(GPTBot|ChatGPT-User|ClaudeBot|CCBot|PerplexityBot|Amazonbot|Googlebot|Bingbot|YandexBot|[\w-]+[Bb]ot)/);
+  const isMobile = /Mobile|Android|iPhone/.test(UA);
+  const isTablet = /iPad|Tablet/.test(UA);
+  let browser = 'Other';
+  if (/Edg\//.test(UA)) browser = 'Edge';
+  else if (/OPR\//.test(UA)) browser = 'Opera';
+  else if (/Chrome\//.test(UA)) browser = 'Chrome';
+  else if (/Firefox\//.test(UA)) browser = 'Firefox';
+  else if (/Safari\//.test(UA)) browser = 'Safari';
+  let os = 'Other';
+  if (/Windows/.test(UA)) os = 'Windows';
+  else if (/Mac OS X/.test(UA)) os = 'macOS';
+  else if (/Android/.test(UA)) os = 'Android';
+  else if (/iPhone|iPad/.test(UA)) os = 'iOS';
+  else if (/Linux/.test(UA)) os = 'Linux';
+  const now = new Date();
+  const TH = o => new Intl.DateTimeFormat('th-TH', { timeZone: 'Asia/Bangkok', ...o }).format(now);
+  let geo = {};
+  try { geo = await Promise.race([fetch('https://ipapi.co/json/').then(r => r.json()), new Promise((_, rej) => setTimeout(() => rej(), 4000))]); } catch {}
+  try {
+    await fetch(TRACKER_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        timestamp: TH({ year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }),
+        date: TH({ year:'numeric', month:'long', day:'numeric', weekday:'long' }),
+        time: TH({ hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }),
+        ip: geo.ip || '-', country: geo.country_name || '-', region: geo.region || '-',
+        city: geo.city || '-', isp: geo.org || '-',
+        device: isTablet ? 'Tablet' : isMobile ? 'Mobile' : 'Desktop',
+        browser, os,
+        referrer: document.referrer || 'Direct',
+        isBot: BOT, botName: BOT ? (botMatch ? botMatch[0] : 'Unknown Bot') : '-',
+        language: navigator.language || '-',
+        screen: `${screen.width}x${screen.height}`,
+        page: 'consult'
+      })
+    });
+  } catch {}
+})();
+</script>
+
+</body>
+</html>
