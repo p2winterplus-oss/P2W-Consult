@@ -57,11 +57,27 @@
     .hex { clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%); }
 
     /* ── Logo glow (dark only) ── */
-    @keyframes logo-glow {
-      0%,100% { filter: drop-shadow(0 0 4px rgba(197,168,128,.5)); }
-      50%      { filter: drop-shadow(0 0 14px rgba(197,168,128,.9)) drop-shadow(0 0 30px rgba(197,168,128,.3)); }
+    @keyframes logo-stroke-pulse {
+      0%, 100% {
+        filter:
+          drop-shadow( 1px  0   0 rgba(197,168,128,.3))
+          drop-shadow(-1px  0   0 rgba(197,168,128,.3))
+          drop-shadow( 0    1px 0 rgba(197,168,128,.3))
+          drop-shadow( 0   -1px 0 rgba(197,168,128,.3));
+      }
+      50% {
+        filter:
+          drop-shadow( 1px  0   0 rgba(197,168,128,1))
+          drop-shadow(-1px  0   0 rgba(197,168,128,1))
+          drop-shadow( 0    1px 0 rgba(197,168,128,1))
+          drop-shadow( 0   -1px 0 rgba(197,168,128,1))
+          drop-shadow( 1px  1px 0 rgba(197,168,128,.8))
+          drop-shadow(-1px  1px 0 rgba(197,168,128,.8))
+          drop-shadow( 1px -1px 0 rgba(197,168,128,.8))
+          drop-shadow(-1px -1px 0 rgba(197,168,128,.8));
+      }
     }
-    .dark .logo-glow { animation: logo-glow 4s ease-in-out infinite; }
+    .dark .logo-glow { animation: logo-stroke-pulse 5s ease-in-out infinite; }
 
     /* ── Hero decorative hex SVG ── */
     .hero-hex-deco { position: absolute; right: 14%; top: 50%; transform: translateY(-50%); opacity: .045; pointer-events: none; }
@@ -135,10 +151,10 @@
 
     <!-- Logo -->
     <a href="#home" class="flex items-center gap-3 group">
-      <img src="logo.png" alt="P2W INTERPLUS" class="h-14 w-auto object-contain logo-glow">
+      <img src="logo.png" alt="P2W INTERPLUS" class="h-[5.25rem] w-auto object-contain logo-glow">
       <div>
         <span class="block text-xs font-semibold tracking-[.15em] text-brand-dark dark:text-white uppercase theme-t">P2W INTERPLUS</span>
-        <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Consulting</span>
+        <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Marketing & Consult</span>
       </div>
     </a>
 
@@ -892,10 +908,10 @@
 
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
-          <img src="logo.png" alt="P2W INTERPLUS" class="h-14 w-auto object-contain logo-glow">
+          <img src="logo.png" alt="P2W INTERPLUS" class="h-28 w-auto object-contain logo-glow">
           <div>
             <span class="block text-xs font-semibold tracking-[.15em] text-brand-dark dark:text-white uppercase theme-t">P2W INTERPLUS</span>
-            <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Consulting</span>
+            <span class="block text-[9px] text-brand-bronze tracking-[.22em] uppercase font-medium">Marketing & Consult</span>
           </div>
         </div>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-sm font-light theme-t">
